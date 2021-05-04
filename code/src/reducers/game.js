@@ -7,9 +7,10 @@ import { createSlice } from '@reduxjs/toolkit'
 const game = createSlice({
   name: 'game',
   initialState: {
-    username: '',
-    gameElements: null,
+    username: '', // should this be userName or the other one gameelements?
+    gameElements: null, // I couldn't make the conditional rendering to work when this was an empty object
     loading: false,
+    history: [] // for saving the previous step
   },
 
 // Added setLoading reducer
@@ -19,11 +20,18 @@ const game = createSlice({
       store.userName = action.payload
     },
     setGameElements: (store, action) => {
+      if (store.gameElements !== null) {
+        store.history = [...store.history, store.gameElements]  // save the previous step
+      }
       store.gameElements = action.payload
     },
     setLoading: (store, action) => {
       store.loading = action.payload
     },
+    setHistory: (store, action) => {
+      store.gameElements = store.history[store.history.length - 1] // update gameElements to be a last element of history array
+      store.history = store.history.slice(0, store.history.length - 1) // return a modified copy of array -- start slicing from index 0 and stop slicing to store.history.length - 1. 
+    }
   },
 })
 // Post request and dispatching the action that will set the game´s elements
