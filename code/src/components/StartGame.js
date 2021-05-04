@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+
 import "nes.css/css/nes.min.css";
 
 import game, { startGame } from '../reducers/game'
@@ -20,7 +21,6 @@ const StartGame = () => {
     <form onSubmit={handleStartGame} className="nes-balloon from-left nes-pointer is-dark form-container">
       <p>Welcome to our amazing game!</p>
       <div className="nes-field is-inline">
-   
         <input
           type="text"
           value={userName}
@@ -31,7 +31,7 @@ const StartGame = () => {
           required
         />
       </div>
-      <button type="onSubmit" className="nes-btn is-success">
+      <button type="submit" className="nes-btn is-success">
         Start Game
       </button>
     </form>

@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 /* import StartGame from './StartGame' - it wasnt being used*/ 
 
+import  game  from '../reducers/game'
 import "nes.css/css/nes.min.css";
 
 //I removed the import of the slice game
@@ -9,6 +10,7 @@ import { continueGame } from 'reducers/game'
 
 const GameElements = () => {
     const gameElements = useSelector(store => store.game.gameElements)
+    const history = useSelector(store => store.game.history)
    /*  const userName = useSelector(store => store.game.gameElements.userName) */
    const userName = useSelector(store => store.game.userName) 
    
@@ -30,6 +32,7 @@ const GameElements = () => {
                     >{item.direction}</button> 
                         
                )})}
+               <button onClick={() => dispatch(game.actions.setHistory())} disabled={!history.length}>Go back</button>
         </div>
     )
 }

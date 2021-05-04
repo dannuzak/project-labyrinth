@@ -1,7 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+
 import GameElements from './GameElements'
 import StartGame from './StartGame'
+
 import "nes.css/css/nes.min.css";
 // import game from '../reducers/game'
 
